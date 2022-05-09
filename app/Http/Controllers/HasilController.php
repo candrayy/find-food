@@ -25,20 +25,23 @@ class HasilController extends Controller
 
     public function hasil(Request $request)
     {
-        $kriterias = DB::table('makanans')->select('kriteria_id')->distinct()->get()->pluck('kriteria_id')->sort();
-        $rasas = DB::table('makanans')->select('rasa_id')->distinct()->get()->pluck('rasa_id')->sort();
+        $kriterias = Makanan::select('kriteria_id')->get()->sort();
+        $rasas = Makanan::select('rasa_id')->get()->sort();
 
         $makanan = Makanan::query();
         if($request->filled('kriteria_id')){
-            $makanan->where('kriteria_id', $request->kriteria_id);
+            $makanan->whereIn('kriteria_id', $request->kriteria_id);
         }
         if($request->filled('rasa_id')){
-            $makanan->where('rasa_id', $request->rasa_id);
+            $makanan->whereIn('rasa_id', $request->rasa_id);
         }
         
+        $checked = $_GET['kriteria_id'];
+        $checked2 = $_GET['rasa_id'];
+
         return view('hasil', [
-            'kriterias' => $kriterias,
-            'rasas' => $rasas,
+            'kriterias' => $checked,
+            'rasas' => $checked2,
             'makanans' => $makanan->get(),
         ]);
         // $hasil = ([

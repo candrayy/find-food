@@ -19,11 +19,19 @@
                         </div>
                         <div class="card-body">
                         <form action="{{ route('hasil') }}" method="get">
-                            
                             <label for="kriteria_id" class="form-label">Kriteria</label>
                             @foreach ($kriteria as $kr)
+                            @php
+                                $checked = [];
+                                if(isset($_GET['kriteria_id']))
+                                {
+                                    $checked = $_GET['kriteria_id'];
+                                }
+                            @endphp
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="kriteria_id" value="{{ $kr->id }}">
+                                <input class="form-check-input" type="checkbox" name="kriteria_id[]" value="{{ $kr->id }}"
+                                @if(in_array($kr->id, $checked)) checked @endif
+                                />
                                 <label class="form-check-label">
                                     {{ $kr->nama_kriteria }}
                                 </label>
@@ -32,8 +40,17 @@
                             <hr>
                             <label for="rasa_id" class="form-label">Rasa</label>
                             @foreach ($rasa as $sra)
+                            @php
+                                $checked2 = [];
+                                if(isset($_GET['rasa_id']))
+                                {
+                                    $checked2 = $_GET['rasa_id'];
+                                }
+                            @endphp
                             <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="rasa_id" value="{{ $sra->id }}">
+                                <input class="form-check-input" type="checkbox" name="rasa_id[]" value="{{ $sra->id }}"
+                                @if(in_array($sra->id, $checked2)) checked2 @endif
+                                />
                                 <label class="form-check-label">
                                     {{ $sra->nama_rasa }}
                                 </label>
@@ -43,6 +60,7 @@
                             <div class="form-group">
                                 <button type="submit" class="btn btn-success btn-submit">Proses</button>
                             </div>
+                        </form>
                         </div>
                     </div>
 

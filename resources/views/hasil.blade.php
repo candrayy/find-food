@@ -27,7 +27,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse (dd($makanans) as $mkn)
+                                    @forelse ($makanans as $mkn)
                                     <tr>
                                         <td>{{ $mkn->kriteria->nama_kriteria }}</td>
                                         <td>{{ $mkn->rasa->nama_rasa }}</td>
