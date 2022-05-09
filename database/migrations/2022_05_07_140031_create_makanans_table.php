@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('kriteria_id')->constrained('kriterias');
             $table->foreignId('rasa_id')->constrained('rasas');
+            $table->string('gambar');
             $table->string('nama_makanan');
             $table->timestamps();
         });

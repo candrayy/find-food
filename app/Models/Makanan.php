@@ -12,7 +12,7 @@ class Makanan extends Model
     protected $primaryKey = 'id';
     public $timestamps = false;
     protected $fillable = [
-        'kriteria_id', 'rasa_id', 'nama_makanan',
+        'kriteria_id', 'rasa_id', 'gambar', 'nama_makanan',
     ];
 
     public function kriteria()

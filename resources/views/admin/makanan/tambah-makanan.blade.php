@@ -36,6 +36,10 @@
                                 @endforeach
                                 </select>
                             </div>
+                            <div class="mb-3">
+                                <label for="gambar" class="form-label">Pilih Gambar</label>
+                                <input type="file" id="gambar" name="gambar" class="form-control" style="height: 45px" required>
+                            </div>
                             <div class="form-group">
                                 <label for="nama_makanan" class="form-label">Nama Makanan</label>
                                 <input type="text" id="nama_makanan" name="nama_makanan" class="form-control" placeholder="Masukan Nama Makanan" required>

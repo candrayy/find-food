@@ -23,6 +23,7 @@
                                     <tr>
                                         <th scope="col">Kriteria</th>
                                         <th scope="col">Rasa</th>
+                                        <th scope="col">Gambar</th>
                                         <th scope="col">Nama Makanan</th>
                                     </tr>
                                 </thead>
@@ -31,6 +32,9 @@
                                     <tr>
                                         <td>{{ $mkn->kriteria->nama_kriteria }}</td>
                                         <td>{{ $mkn->rasa->nama_rasa }}</td>
+                                        <td>
+                                            <img src="{{ asset('images/makanan/'.$mkn->gambar) }}" width="100px">
+                                        </td>
                                         <td>{{ $mkn->nama_makanan }}</td>
                                     </tr>
                                     @empty

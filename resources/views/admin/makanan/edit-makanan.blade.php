@@ -38,7 +38,12 @@
                                 @endforeach
                                 </select>
                             </div>
-                            <div class="form-group">
+                            <div class="mb-3">
+                                <label for="gambar" class="form-label">Pilih Gambar</label>
+                                <input type="file" id="gambar" name="gambar" class="form-control" style="height: 45px" required>
+                            </div>
+                            <img src="{{ asset('images/makanan/'.$makanan->gambar ) }}" width="95px" height="80px" alt="img">
+                            <div class="form-group mt-3">
                                 <label for="nama_makanan" class="form-label">Nama Makanan</label>
                                 <input type="text" id="nama_makanan" name="nama_makanan" class="form-control" placeholder="Masukan Nama Makanan" required>
                             </div>

@@ -24,6 +24,7 @@
                                         <th scope="col">No.</th>
                                         <th scope="col">Kriteria</th>
                                         <th scope="col">Rasa</th>
+                                        <th scope="col">Gambar</th>
                                         <th scope="col">Makanan/Minuman</th>
                                         <th scope="col">Aksi</th>
                                     </tr>
@@ -34,6 +35,9 @@
                                         <td>{{ $makanan->firstItem()+$loop->index }}</td>
                                         <td>{{ $mkn->kriteria->nama_kriteria }}</td>
                                         <td>{{ $mkn->rasa->nama_rasa }}</td>
+                                        <td>
+                                            <img src="{{ asset('images/makanan/'.$mkn->gambar) }}" width="100px">
+                                        </td>
                                         <td>{!! Str::limit($mkn->nama_makanan, 20) !!}</td>
                                         <td>
                                             <a href="{{ route('edit-makanan', $mkn->id) }}" class="btn btn-success btn-icon btn-sm" type="button">

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use Auth;
 use Illuminate\Support\Str;
 use App\Models\Kriteria;
@@ -42,11 +44,19 @@ class MakananController extends Controller
      */
     public function store(Request $request)
     {
-        $makanan = Makanan::create([
-            'kriteria_id' => $request->kriteria_id,
-            'rasa_id' => $request->rasa_id,
-            'nama_makanan' => $request->nama_makanan,
-        ]);
+        $makanan = new Makanan;
+        $makanan->kriteria_id = $request->kriteria_id;
+        $makanan->rasa_id = $request->rasa_id;
+        if($request->hasfile('gambar'))
+        {
+            $file = $request->file('gambar');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention;
+            $file->move('images/makanan/', $filename);
+            $makanan->gambar = $filename;
+        }
+        $makanan->nama_makanan = $request->nama_makanan;
+        $makanan->save();
         return redirect('makanan');
     }
 
@@ -85,11 +95,23 @@ class MakananController extends Controller
     public function update(Request $request, $id)
     {
         $makanan = Makanan::findOrFail($id);
-        $makanan->update([
-            'kriteria_id' => $request->kriteria_id,
-            'rasa_id' => $request->rasa_id,
-            'nama_makanan' => $request->nama_makanan,
-        ]);
+        $makanan->kriteria_id = $request->kriteria_id;
+        $makanan->rasa_id = $request->rasa_id;
+        if($request->hasfile('gambar'))
+        {
+            $destination = 'images/makanan/'.$makanan->gambar;
+            if(File::exists($destination))
+            {
+                File::delete($destination);
+            }
+            $file = $request->file('gambar');
+            $extention = $file->getClientOriginalExtension();
+            $filename = time().'.'.$extention;
+            $file->move('images/makanan/', $filename);
+            $makanan->gambar = $filename;
+        }
+        $makanan->nama_makanan = $request->nama_makanan;
+        $makanan->save();
         return redirect('makanan');
     }
 
