@@ -29,6 +29,7 @@ use App\Http\Controllers\RegisterController;
 // Login
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'postlogin'])->name('post-login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 
 // Register
@@ -48,7 +49,7 @@ Route::get('/result', [HasilController::class, 'store'])->name('result');
 
 
 
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth', 'revalidate']], function () {
     
     // Admin
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
