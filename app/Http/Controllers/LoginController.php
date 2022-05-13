@@ -17,7 +17,9 @@ class LoginController extends Controller
         if (Auth::check()) {
             return redirect()->back();
         }
-        return view('admin.login');
+        else{
+            return view('admin.login');
+        }
     }
 
     public function postlogin(request $request)

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Auth;
 
 class RegisterController extends Controller
 {
@@ -14,7 +15,12 @@ class RegisterController extends Controller
      */
     public function index()
     {
-        return view('admin.register');
+        if(Auth::check()){
+            return redirect()->back();
+        }
+        else{
+            return view('admin.register');
+        }
     }
 
     /**
