@@ -38,6 +38,7 @@ Route::post('/register', [RegisterController::class, 'store'])->name('post-regis
 
 
 // Find Food
+Route::get('/', [FindFoodController::class, 'index']);
 Route::get('/find-food', [FindFoodController::class, 'index'])->name('find-food');
 Route::get('/hasil', [HasilController::class, 'hasil'])->name('hasil');
 Route::get('/result', [HasilController::class, 'store'])->name('result');
